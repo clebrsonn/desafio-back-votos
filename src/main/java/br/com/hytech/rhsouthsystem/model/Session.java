@@ -1,5 +1,6 @@
-package br.com.hytech.rhsouthsystem.entity;
+package br.com.hytech.rhsouthsystem.model;
 
+import br.com.hytech.rhsouthsystem.model.entity.AbstractEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -11,7 +12,7 @@ import javax.persistence.*;
 @Table
 @Entity
 @NoArgsConstructor
-public class Session extends AbstractEntity{
+public class Session extends AbstractEntity {
 
     //(a sessão de votação deve ficar aberta por um tempo determinado na chamada de abertura ou 1 minuto por default
 

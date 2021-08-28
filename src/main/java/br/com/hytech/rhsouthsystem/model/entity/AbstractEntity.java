@@ -1,4 +1,4 @@
-package br.com.hytech.rhsouthsystem.entity;
+package br.com.hytech.rhsouthsystem.model.entity;
 
 import lombok.Data;
 
