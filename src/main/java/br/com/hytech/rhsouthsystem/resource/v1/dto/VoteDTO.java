@@ -1,4 +1,4 @@
-package br.com.hytech.rhsouthsystem.resource.dto;
+package br.com.hytech.rhsouthsystem.resource.v1.dto;
 
 import br.com.hytech.rhsouthsystem.enums.VoteChoice;
 import lombok.AllArgsConstructor;

@@ -12,5 +12,10 @@ public class RullingService extends AbstractService<Rulling, Long, RullingReposi
         super(repository);
     }
 
+    @Override
+    public Rulling validateSave(Rulling rulling) {
+        return rulling;
+    }
+
 
 }

@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 public abstract class AbstractService<Entity, Id, Repository extends JpaRepository<Entity, Id>> {
     private final Repository repository;
@@ -13,8 +14,8 @@ public abstract class AbstractService<Entity, Id, Repository extends JpaReposito
         this.repository = repository;
     }
 
-    public Entity findById(Id id) {
-        return repository.findById(id).orElseThrow(() -> new EmptyResultDataAccessException(1));
+    public Optional<Entity> findById(Id id) {
+        return repository.findById(id);
     }
 
     public Collection<Entity> findAll() {
@@ -26,8 +27,11 @@ public abstract class AbstractService<Entity, Id, Repository extends JpaReposito
     }
 
     public Entity save(Entity entity) {
+        entity = validateSave(entity);
         return repository.save(entity);
     }
+
+    public abstract Entity validateSave(Entity entity);
 
     public void deleteById(Id id){
         repository.deleteById(id);

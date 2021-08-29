@@ -32,4 +32,7 @@ public class Session extends AbstractEntity {
 
     @Column(nullable = false)
     private LocalDateTime closedTime;
+
+    @Column(nullable = false)
+    private Long duration;
 }
