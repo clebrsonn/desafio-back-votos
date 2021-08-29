@@ -4,7 +4,7 @@ import br.com.hytech.rhsouthsystem.model.Vote;
 import br.com.hytech.rhsouthsystem.resource.v1.dto.VoteDTO;
 
 public interface IVoteService{
-    Vote vote(VoteDTO entity);
+    //Vote vote(VoteDTO entity);
 
 
 }

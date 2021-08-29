@@ -27,8 +27,11 @@ public abstract class AbstractService<Entity, Id, Repository extends JpaReposito
     }
 
     public Entity save(Entity entity) {
+        entity = validateSave(entity);
         return repository.save(entity);
     }
+
+    public abstract Entity validateSave(Entity entity);
 
     public void deleteById(Id id){
         repository.deleteById(id);
