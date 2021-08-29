@@ -14,7 +14,7 @@ public class AssociateService extends AbstractService<Associate, String, Associa
 
     public Associate hableToVote(String id){
 
-        return findById(id);
+        return null;
 
     }
 }

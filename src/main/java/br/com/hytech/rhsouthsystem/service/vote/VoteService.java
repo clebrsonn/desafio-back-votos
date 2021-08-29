@@ -3,7 +3,7 @@ package br.com.hytech.rhsouthsystem.service.vote;
 import br.com.hytech.rhsouthsystem.model.Session;
 import br.com.hytech.rhsouthsystem.model.Vote;
 import br.com.hytech.rhsouthsystem.repository.VoteRepository;
-import br.com.hytech.rhsouthsystem.resource.dto.VoteDTO;
+import br.com.hytech.rhsouthsystem.resource.v1.dto.VoteDTO;
 import br.com.hytech.rhsouthsystem.service.AbstractService;
 import br.com.hytech.rhsouthsystem.service.associate.AssociateService;
 import br.com.hytech.rhsouthsystem.service.session.SessionService;
@@ -28,7 +28,7 @@ public class VoteService extends AbstractService<Vote, Long, VoteRepository> imp
     public Vote vote(VoteDTO entity) {
 
         //tem sessão? -> aberta?
-        Session session = sessionService.findById(entity.getSession());
+        Session session = sessionService.findById(entity.getSession()).orElseThrow();
         assert session.getClosedTime().isAfter(LocalDateTime.now());
        // associateService.validate()
 
