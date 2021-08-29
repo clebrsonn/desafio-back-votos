@@ -11,4 +11,10 @@ public class AssociateService extends AbstractService<Associate, String, Associa
     public AssociateService(AssociateRepository repository) {
         super(repository);
     }
+
+    public Associate hableToVote(String id){
+
+        return findById(id);
+
+    }
 }
