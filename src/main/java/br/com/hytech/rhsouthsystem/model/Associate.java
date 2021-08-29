@@ -1,4 +1,4 @@
-package br.com.hytech.rhsouthsystem.entity;
+package br.com.hytech.rhsouthsystem.model;
 
 import lombok.*;
 import org.hibernate.validator.constraints.br.CPF;
