@@ -14,13 +14,7 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/v1/vote")
 public class VoteResource extends AbstractController<Vote, Long, VoteService>{
-    public VoteService voteService;
-
     public VoteResource(VoteService service) {
         super(service);
-    }
-    @PostMapping
-    public ResponseEntity<Vote> vote(@Valid @RequestBody VoteDTO voteDTO){
-        return ResponseEntity.ok(voteService.vote(voteDTO));
     }
 }

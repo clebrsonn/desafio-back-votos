@@ -15,23 +15,23 @@ public class AbstractController<Entity, Id, Service extends AbstractService<Enti
     private Service service;
 
     @GetMapping
-    public ResponseEntity<Collection<Entity>> getAll(){
+    protected ResponseEntity<Collection<Entity>> getAll(){
         return ResponseEntity.ok(service.findAll());
     }
     @GetMapping("/{id}")
-    public ResponseEntity<Entity> findById(@PathVariable Id id) {
+    protected ResponseEntity<Entity> findById(@PathVariable Id id) {
         Optional<Entity> entity = service.findById(id);
 
         return entity.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public ResponseEntity<Entity> save(@RequestBody Entity entity){
+    protected ResponseEntity<Entity> save(@RequestBody Entity entity){
         return ResponseEntity.ok(service.save(entity));
     }
 
     @PutMapping
-    public Entity update(Id id, Entity user) {
+    protected Entity update(Id id, Entity user) {
         Optional<Entity> savedUser = service.findById(id);
         if (savedUser.isPresent()) {
 
@@ -45,7 +45,7 @@ public class AbstractController<Entity, Id, Service extends AbstractService<Enti
     }
 
     @DeleteMapping
-    public ResponseEntity<Entity> delete(Id id){
+    protected ResponseEntity<Entity> delete(Id id){
         service.deleteById(id);
         return ResponseEntity.noContent().build();
     }
