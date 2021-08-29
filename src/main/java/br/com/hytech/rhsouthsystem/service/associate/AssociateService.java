@@ -23,7 +23,7 @@ public class AssociateService extends AbstractService<Associate, String, Associa
     public Associate hableToVote(String id){
 
         Associate associate = findById(id).orElseThrow();
-        assert cpfValidator.validate(associate.getCpf());
+        cpfValidator.validate(associate.getCpf());
 
         return associate;
     }

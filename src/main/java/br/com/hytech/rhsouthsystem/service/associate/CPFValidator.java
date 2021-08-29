@@ -1,5 +1,6 @@
 package br.com.hytech.rhsouthsystem.service.associate;
 
+import br.com.hytech.exceptions.NotHableToVoteException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -30,10 +31,16 @@ public class CPFValidator {
             ResponseEntity<String> responseEntity = restTemplate
                     .exchange(url, HttpMethod.GET, requestEntity,String.class, params);
 
-            return Objects.requireNonNull(responseEntity.getBody()).equalsIgnoreCase("ABLE_TO_VOTE");
+            if(Objects.requireNonNull(responseEntity.getBody()).equalsIgnoreCase("ABLE_TO_VOTE")){
+                throw new NotHableToVoteException("CPF não habilitado para votar");
+            }
+            return true;
         }catch (HttpClientErrorException e){
-            assert HttpStatus.NOT_FOUND.value() == e.getRawStatusCode();
-            return false;
+            if(HttpStatus.NOT_FOUND.value() == e.getRawStatusCode()){
+                throw new NotHableToVoteException("CPF inválido", e.getCause());
+            }
+            throw new RuntimeException(String.valueOf(e.getRawStatusCode()));
+
         }
     }
 }
