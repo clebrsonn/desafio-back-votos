@@ -1,6 +1,5 @@
 package br.com.hytech.rhsouthsystem.service;
 
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Collection;
@@ -39,5 +38,9 @@ public abstract class AbstractService<Entity, Id, Repository extends JpaReposito
 
     public void delete(Entity entity){
         repository.delete(entity);
+    }
+
+    public Repository getRepository(){
+        return this.repository;
     }
 }

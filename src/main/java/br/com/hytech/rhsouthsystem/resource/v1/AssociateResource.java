@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/v1/associate")
+@RequestMapping("/v1/associates")
 public class AssociateResource extends AbstractController<Associate, String, AssociateService>{
     public AssociateResource(AssociateService associateService) {
         super(associateService);

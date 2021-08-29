@@ -1,4 +1,4 @@
-package br.com.hytech.exceptions;
+package br.com.hytech.rhsouthsystem.exceptions;
 
 public class NotHableToVoteException extends RuntimeException{
 
@@ -12,11 +12,5 @@ public NotHableToVoteException(
             final String message) {
         super(message);
     }
-
-    public NotHableToVoteException(
-            final Throwable cause) {
-        super(cause);
-    }
-
 
 }

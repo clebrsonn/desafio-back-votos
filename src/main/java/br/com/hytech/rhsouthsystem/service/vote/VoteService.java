@@ -1,5 +1,6 @@
 package br.com.hytech.rhsouthsystem.service.vote;
 
+import br.com.hytech.rhsouthsystem.exceptions.ClosedSessionException;
 import br.com.hytech.rhsouthsystem.model.Session;
 import br.com.hytech.rhsouthsystem.model.Vote;
 import br.com.hytech.rhsouthsystem.repository.VoteRepository;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 
 @Service
-public class VoteService extends AbstractService<Vote, Long, VoteRepository> implements IVoteService{
+public class VoteService extends AbstractService<Vote, Long, VoteRepository> {
 
     private final SessionService sessionService;
     private final AssociateService associateService;
@@ -25,10 +26,11 @@ public class VoteService extends AbstractService<Vote, Long, VoteRepository> imp
 
     @Override
     public Vote validateSave(Vote entity) {
-        //tem sessão? -> aberta?
         Session session = sessionService.findById(entity.getSession().getId()).orElseThrow();
-        assert session.getClosedTime().isAfter(LocalDateTime.now());
-        //associado -> já votou? CPF válido?
+
+        if(session.getClosedTime().isAfter(LocalDateTime.now())){
+            throw new ClosedSessionException("Não é possível votar mais, sessão fechada!");
+        }
         var associate = associateService.hableToVote(entity.getAssociate().getCpf());
         return new Vote(associate, session, entity.getChoice());
 

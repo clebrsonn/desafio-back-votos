@@ -6,12 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/v1/rulling")
+@RequestMapping("/v1/rullings")
 public class RullingResource extends AbstractController<Rulling, Long, RullingService> {
-
     public RullingResource(RullingService service) {
         super(service);
     }
-
-
 }

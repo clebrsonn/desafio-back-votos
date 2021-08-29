@@ -9,6 +9,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -35,4 +36,24 @@ public class Session extends AbstractEntity {
 
     @Column(nullable = false)
     private Long duration;
+
+    public void setDuration(Long duration) {
+        this.duration = duration;
+        if(duration == null || duration <=0){
+            this.duration = 1L;
+        }
+        setClosedTime(getOpenTime().plusMinutes(getDuration()));
+    }
+
+    public void setOpenTime(LocalDateTime openTime) {
+        this.openTime = openTime;
+        if(openTime == null){
+            this.openTime = LocalDateTime.now();
+        }
+    }
+
+    public LocalDateTime getOpenTime() {
+
+        return Objects.isNull(openTime) ? LocalDateTime.now() : openTime;
+    }
 }

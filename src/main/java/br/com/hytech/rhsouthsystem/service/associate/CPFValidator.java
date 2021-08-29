@@ -1,6 +1,6 @@
 package br.com.hytech.rhsouthsystem.service.associate;
 
-import br.com.hytech.exceptions.NotHableToVoteException;
+import br.com.hytech.rhsouthsystem.exceptions.NotHableToVoteException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;

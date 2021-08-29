@@ -31,13 +31,13 @@ public class AbstractController<Entity, Id, Service extends AbstractService<Enti
     }
 
     @PutMapping
-    protected Entity update(Id id, Entity user) {
+    protected ResponseEntity<Entity> update(Id id, Entity user) {
         Optional<Entity> savedUser = service.findById(id);
         if (savedUser.isPresent()) {
 
             //BeanUtils vários métodos úteis, copyproperties serve para copiar os atributos de uma classe para outro
             BeanUtils.copyProperties(user, savedUser.get(), "id");
-            return service.save(savedUser.get());
+            return ResponseEntity.ok(service.save(savedUser.get()));
         } else {
             throw new EmptyResultDataAccessException(1);
         }
@@ -48,6 +48,10 @@ public class AbstractController<Entity, Id, Service extends AbstractService<Enti
     protected ResponseEntity<Entity> delete(Id id){
         service.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    protected Service getService(){
+        return service;
     }
 
 }
