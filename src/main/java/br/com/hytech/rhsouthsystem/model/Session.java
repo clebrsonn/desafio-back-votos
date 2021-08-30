@@ -37,6 +37,8 @@ public class Session extends AbstractEntity {
     @Column(nullable = false)
     private Long duration;
 
+    private boolean isClosed = false;
+
     public void setDuration(Long duration) {
         this.duration = duration;
         if(duration == null || duration <=0){
