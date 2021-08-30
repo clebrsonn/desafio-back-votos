@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 @Service
 public class SessionService extends AbstractService<Session, Long, SessionRepository> {
@@ -32,6 +33,10 @@ public class SessionService extends AbstractService<Session, Long, SessionReposi
 
     @Override
     public Session validateSave(Session session) {
+        if(!Objects.nonNull(session.getRulling())){
+            throw new RuntimeException("Não há seção pauta aberta");
+        }
+
         Rulling rulling = rullingService.findById(session.getRulling().getId()).orElseThrow();
         session.setRulling(rulling);
         session.setDuration(session.getDuration());
